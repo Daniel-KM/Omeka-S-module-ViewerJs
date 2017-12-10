@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-18 00:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Module.php:60
+msgid "The ViewerJS library should be installed."
+msgstr ""
+
+#: Module.php:61
+msgid "See module’s installation documentation."
+msgstr ""
+
+#: Module.php:172 src/Form/ConfigForm.php:20
+msgid "If any, this style will be added to the iframe."
+msgstr ""
+
+#: Module.php:173 src/Form/ConfigForm.php:21
+msgid "The height may be required."
+msgstr ""
+
+#: src/Media/FileRenderer/ViewerJs.php:74
+#, php-format
+msgid "This browser does not support %s (%s)."
+msgstr ""
+
+#: src/Media/FileRenderer/ViewerJs.php:76
+#: view/common/pdf-viewer-inline.phtml:382 view/common/viewer-js.phtml:67
+#, php-format
+msgid "You may %sdownload it%s to view it offline."
+msgstr ""
+
+#: view/common/pdf-viewer-inline.phtml:381 view/common/viewer-js.phtml:66
+msgid "This browser does not support PDF."
+msgstr ""
+
+#: Module.php:171 src/Form/ConfigForm.php:19
+msgid "Inline style"
+msgstr ""

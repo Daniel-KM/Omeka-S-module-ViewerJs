@@ -1,0 +1,32 @@
+{
+    "name": "daniel-km/omeka-s-module-viewer-js",
+    "description": "ViewerJs (module for Omeka S)",
+    "type": "library",
+    "license": "CECILL-2.1",
+    "authors": [
+        {
+            "name": "Daniel Berthereau",
+            "email": "Daniel.packagist@Berthereau.net"
+        }
+    ],
+    "homepage": "https://github.com/Daniel-KM/Omeka-S-module-ViewerJs",
+    "support": {
+        "issues": "https://github.com/Daniel-KM/Omeka-S-module-ViewerJs/issues",
+        "forum": "https://forum.omeka.org/"
+    },
+    "keywords": [
+        "Omeka S",
+        "Omeka S module",
+        "viewer",
+        "OpenDocument",
+        "pdf",
+        "odt",
+        "ods",
+        "odp"
+    ],
+    "autoload": {
+        "psr-4": {
+            "ViewerJs\\": "src/"
+        }
+    }
+}
