@@ -3,7 +3,6 @@ namespace ViewerJs\Media\FileRenderer;
 
 use Omeka\Api\Representation\MediaRepresentation;
 use Omeka\Media\FileRenderer\RendererInterface;
-use Omeka\Stdlib\Message;
 use Zend\View\Renderer\PhpRenderer;
 
 class ViewerJs implements RendererInterface
@@ -56,9 +55,7 @@ class ViewerJs implements RendererInterface
         }
 
         $html = '<iframe height="100%%" width="100%%" %1$s%2$s src="%3$s">%4$s</iframe>';
-        $url = version_compare(\Omeka\Module::VERSION, '1.1.0-alpha', '<')
-            ? $view->assetUrl('vendor/viewerjs', 'ViewerJs') . '?file=' . $media->originalUrl()
-            : ($view->assetUrl('vendor/viewerjs', 'ViewerJs') . '&file=' . $media->originalUrl());
+        $url = $view->assetUrl('vendor/viewerjs', 'ViewerJs') . '&file=' . $media->originalUrl();
 
         return vsprintf($html, [
             $attributes,
@@ -68,7 +65,7 @@ class ViewerJs implements RendererInterface
         ]);
     }
 
-    protected function fallback($media)
+    protected function fallback(MediaRepresentation $media)
     {
         $view = $this->getView();
         $text = $view->escapeHtml(sprintf($view->translate('This browser does not support %s (%s).'), // @translate

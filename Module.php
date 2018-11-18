@@ -2,7 +2,7 @@
 /**
  * @author Daniel Berthereau
  * @license http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * @copyright Daniel Berthereau, 2017
+ * @copyright Daniel Berthereau, 2017-2018
  *
  * Copyright 2017 Daniel Berthereau
  *
@@ -34,6 +34,7 @@ namespace ViewerJs;
 use Omeka\Module\AbstractModule;
 use Omeka\Module\Exception\ModuleCannotInstallException;
 use ViewerJs\Form\ConfigForm;
+use ViewerJs\Form\SiteSettingsFieldset;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
 use Zend\Form\Element\Text;
@@ -51,7 +52,6 @@ class Module extends AbstractModule
 
     public function install(ServiceLocatorInterface $serviceLocator)
     {
-        $api = $serviceLocator->get('Omeka\ApiManager');
         $t = $serviceLocator->get('MvcTranslator');
 
         $js = __DIR__ . '/asset/vendor/viewerjs/viewer.js';
@@ -71,7 +71,7 @@ class Module extends AbstractModule
         $this->manageSiteSettings($serviceLocator, 'uninstall');
     }
 
-    protected function manageSettings($settings, $process, $key = 'settings')
+    protected function manageSettings($settings, $process, $key = 'config')
     {
         $config = require __DIR__ . '/config/module.config.php';
         $defaultSettings = $config[strtolower(__NAMESPACE__)][$key];
@@ -103,7 +103,7 @@ class Module extends AbstractModule
         $sharedEventManager->attach(
             \Omeka\Form\SiteSettingsForm::class,
             'form.add_elements',
-            [$this, 'addSiteSettingsFormElements']
+            [$this, 'handleSiteSettings']
         );
     }
 
@@ -112,15 +112,14 @@ class Module extends AbstractModule
         $services = $this->getServiceLocator();
         $config = $services->get('Config');
         $settings = $services->get('Omeka\Settings');
-        $formElementManager = $services->get('FormElementManager');
+        $form = $services->get('FormElementManager')->get(ConfigForm::class);
 
         $data = [];
-        $defaultSettings = $config[strtolower(__NAMESPACE__)]['settings'];
+        $defaultSettings = $config[strtolower(__NAMESPACE__)]['config'];
         foreach ($defaultSettings as $name => $value) {
-            $data[$name] = $settings->get($name);
+            $data[$name] = $settings->get($name, $value);
         }
 
-        $form = $formElementManager->get(ConfigForm::class);
         $form->init();
         $form->setData($data);
         $html = $renderer->formCollection($form);
@@ -130,13 +129,11 @@ class Module extends AbstractModule
     public function handleConfigForm(AbstractController $controller)
     {
         $services = $this->getServiceLocator();
-        $config = $services->get('Config');
-        $settings = $services->get('Omeka\Settings');
+        $formManager = $services->get('FormElementManager');
+        $form = $formManager->get(ConfigForm::class);
 
         $params = $controller->getRequest()->getPost();
 
-        $form = $this->getServiceLocator()->get('FormElementManager')
-            ->get(ConfigForm::class);
         $form->init();
         $form->setData($params);
         if (!$form->isValid()) {
@@ -144,42 +141,35 @@ class Module extends AbstractModule
             return false;
         }
 
-        $defaultSettings = $config[strtolower(__NAMESPACE__)]['settings'];
+        $params = $form->getData();
+
+        $config = $services->get('Config');
+        $settings = $services->get('Omeka\Settings');
+        $space = strtolower(__NAMESPACE__);
+        $defaultSettings = $config[$space]['config'];
+        $params = array_intersect_key($params, $defaultSettings);
         foreach ($params as $name => $value) {
-            if (isset($defaultSettings[$name])) {
-                $settings->set($name, $value);
-            }
+            $settings->set($name, $value);
         }
     }
 
-    public function addSiteSettingsFormElements(Event $event)
+    public function handleSiteSettings(Event $event)
     {
         $services = $this->getServiceLocator();
-        $siteSettings = $services->get('Omeka\Settings\Site');
+        $settings = $services->get('Omeka\Settings\Site');
         $config = $services->get('Config');
+        $fieldset = $services->get('FormElementManager')->get(SiteSettingsFieldset::class);
+
+        $space = strtolower(__NAMESPACE__);
+        $defaultSettings = $config[$space]['site_settings'];
+        $data = [];
+        foreach ($defaultSettings as $name => $value) {
+            $data[$name] = $settings->get($name, $value);
+        }
+
+        $fieldset->setName($space);
         $form = $event->getTarget();
-
-        $defaultSiteSettings = $config[strtolower(__NAMESPACE__)]['site_settings'];
-
-        $fieldset = new Fieldset('viewer_js');
-        $fieldset->setLabel('ViewerJs');
-
-        $fieldset->add([
-            'name' => 'viewerjs_style',
-            'type' => Text::class,
-            'options' => [
-                'label' => 'Inline style', // @translate
-                'info' => $this->translate('If any, this style will be added to the iframe.') // @translate
-                    . ' ' . $this->translate('The height may be required.'), // @translate
-            ],
-            'attributes' => [
-                'value' => $siteSettings->get(
-                    'viewerjs_style',
-                    $defaultSiteSettings['viewerjs_style']
-                ),
-            ],
-        ]);
-
         $form->add($fieldset);
+        $form->get($space)->populateValues($data);
     }
 }

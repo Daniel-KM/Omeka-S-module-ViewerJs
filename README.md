@@ -14,6 +14,7 @@ formats (pdf, standard office ones), via a light viewer.
 Common multimedia formats can be managed too, if they are displayable by the
 browser. They are not enabled by default, because they are natively managed by
 Omeka S.
+
 - Images (jpg, png, gif)
 - Audio/video (via html5)
 
@@ -21,18 +22,20 @@ Concretely, it includes the [ViewerJS] library, that integrates the pdf library
 of Mozilla [pdf.js] and the standard office formats via [WebODF]. The images and
 the audio/video are displayed via the browser itself.
 
+Note: for office documents, the bigger they are, the bigger should be the
+computer of the visitor to display them.
+
 
 Installation
 ------------
 
-The module uses an external library, [viewer.js], so use the release zip to
+The module uses an external library, [ViewerJS], so use the release zip to
 install it, or use and init the source.
 
 * From the zip
 
-Download the last release [`ViewerJs.zip`] from the list of releases (the
-master does not contain the dependency), and uncompress it in the `modules`
-directory.
+Download the last release [ViewerJs.zip] from the list of releases (the master
+does not contain the dependency), and uncompress it in the `modules` directory.
 
 * From the source and for development:
 
@@ -55,7 +58,8 @@ The next times:
 
 Because the standards of the [Document Foundation] are "simple" and easy to
 manage, the library [WebODF] is mainly a stylesheet. And because this is a true
-standard, it is sustainable, stable, and available to anyone.
+standard, it is sustainable, stable and available to anyone. So it’s recommended
+for any office work.
 
 
 Config
@@ -68,8 +72,9 @@ Options can be set differently for the admin board or each site. Only one option
 is available directly: the styles of the iframe. Other ones are managed via the
 rendered.
 
-To display the media (images, audio, video) via the ViewerJS, add them in the
-section `['file_renderers']['aliases']`.
+To display the media (images, audio, video) via the ViewerJS, copy and adapt the
+section `['file_renderers']['aliases']` in `config/module.config.php` in your
+`config/local.config.php`.
 
 
 Warning
@@ -136,12 +141,13 @@ Javascript library [pdf.js]:
 
 Module ViewerJs for Omeka S:
 
-* Copyright Daniel Berthereau, 2017
+* Copyright Daniel Berthereau, 2017-2018
 
 
 [ViewerJs]: https://github.com/Daniel-KM/Omeka-S-module-ViewerJs
 [Omeka S]: https://omeka.org/s
 [ViewerJS]: https://viewerjs.org
+[ViewerJs.zip]: https://github.com/Daniel-KM/Omeka-S-module-ViewerJs/releases
 [pdf.js]: https://mozilla.github.io/pdf.js
 [WebODF]: https://github.com/kogmbh/WebODF
 [Document Foundation]: https://www.documentfoundation.org

@@ -1,5 +1,5 @@
 {
-  "name": "viewerjs4omekas",
+  "name": "omeka-s-module-viewer-js",
   "version": "3.1.0",
   "description": "ViewerJs (module for Omeka S)",
   "main": "gulpfile.js",
