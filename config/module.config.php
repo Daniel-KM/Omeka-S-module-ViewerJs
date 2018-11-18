@@ -57,8 +57,7 @@ return [
     ],
     'form_elements' => [
         'invokables' => [
-            Form\ConfigForm::class => Form\ConfigForm::class,
-            Form\SiteSettingsFieldset::class => Form\SiteSettingsFieldset::class,
+            Form\SettingsFieldset::class => Form\SettingsFieldset::class,
         ],
     ],
     'translator' => [
@@ -72,7 +71,7 @@ return [
         ],
     ],
     'viewerjs' => [
-        'config' => [
+        'settings' => [
             'viewerjs_style' => 'height: 600px; height: 70vh;',
         ],
         'site_settings' => [

@@ -2,12 +2,14 @@
 namespace ViewerJs\Form;
 
 use Zend\Form\Element;
-use Zend\Form\Form;
+use Zend\Form\Fieldset;
 
-class ConfigForm extends Form
+class SettingsFieldset extends Fieldset
 {
     public function init()
     {
+        $this->setLabel('Viewer JS'); // @translate
+
         $this->add([
             'name' => 'viewerjs_style',
             'type' => Element\Text::class,
