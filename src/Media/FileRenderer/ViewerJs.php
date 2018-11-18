@@ -14,14 +14,9 @@ class ViewerJs implements RendererInterface
      * @var array
      */
     protected $defaultOptions = [
-        'attributes' => 'allowfullscreen="1"',
-        'style' => 'height: 600px; 70vh',
+        'attributes' => 'allowfullscreen="allowfullscreen"',
+        'style' => 'height: 600px; height: 70vh',
     ];
-
-    /**
-     * @var PhpRenderer
-     */
-    protected $view;
 
     /**
      * Render a media via the library ViewerJS.
@@ -35,61 +30,27 @@ class ViewerJs implements RendererInterface
      */
     public function render(PhpRenderer $view, MediaRepresentation $media, array $options = [])
     {
-        $this->setView($view);
-
-        $isSite = $view->params()->fromRoute('__SITE__');
-        // For admin board.
-        if (empty($isSite)) {
+        $isAdmin = $view->params()->fromRoute('__ADMIN__');
+        if ($isAdmin) {
             $attributes = $this->defaultOptions['attributes'];
             $style = $view->setting('viewerjs_style', $this->defaultOptions['style']);
-        }
-        // For sites.
-        else {
+        } else {
             $attributes = isset($options['attributes'])
                 ? $options['attributes']
                 : $view->siteSetting('viewerjs_attributes', $this->defaultOptions['attributes']);
-
             $style = isset($options['style'])
                 ? $options['style']
                 : $view->siteSetting('viewerjs_style', $this->defaultOptions['style']);
         }
 
-        $html = '<iframe height="100%%" width="100%%" %1$s%2$s src="%3$s">%4$s</iframe>';
+        // No fallback for HTML5.
+        $html = '<iframe height="100%%" width="100%%" %1$s%2$s src="%3$s"></iframe>';
         $url = $view->assetUrl('vendor/viewerjs', 'ViewerJs') . '&file=' . $media->originalUrl();
 
         return vsprintf($html, [
             $attributes,
             $style ? ' style="' . $style . '"' : '',
-            $url,
-            $this->fallback($media),
+            $view->escapeHtmlAttr($url),
         ]);
-    }
-
-    protected function fallback(MediaRepresentation $media)
-    {
-        $view = $this->getView();
-        $text = $view->escapeHtml(sprintf($view->translate('This browser does not support %s (%s).'), // @translate
-            $media->extension(), $media->mediaType()));
-        $text .= ' ' . sprintf($view->translate('You may %sdownload it%s to view it offline.'), // @translate
-            '<a href="' . $media->originalUrl() . '">', '</a>');
-        $html = '<p>' . $text . '</p>'
-            . '<img src="' . $media->thumbnailUrl('large') . '" height="600px" />';
-        return $html;
-    }
-
-    /**
-     * @param PhpRenderer $view
-     */
-    protected function setView(PhpRenderer $view)
-    {
-        $this->view = $view;
-    }
-
-    /**
-     * @return PhpRenderer
-     */
-    protected function getView()
-    {
-        return $this->view;
     }
 }
