@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "del": "^3.0.0",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-filter": "^5.1.0",
     "gulp-line-ending-corrector": "^1.0.3",
     "gulp-string-replace": "^0.4.0"
