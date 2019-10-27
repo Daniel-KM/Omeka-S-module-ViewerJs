@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-18 00:00+0100\n"
+"POT-Creation-Date: 2019-10-28 00:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,37 +17,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Module.php:60
+#: Module.php:54
 msgid "The ViewerJS library should be installed."
 msgstr ""
 
-#: Module.php:61
+#: Module.php:55
 msgid "See module’s installation documentation."
 msgstr ""
 
-#: Module.php:172 src/Form/ConfigForm.php:20
-msgid "If any, this style will be added to the iframe."
-msgstr ""
-
-#: Module.php:173 src/Form/ConfigForm.php:21
-msgid "The height may be required."
-msgstr ""
-
-#: src/Media/FileRenderer/ViewerJs.php:74
+#: src/Generic/AbstractModule.php:498
 #, php-format
-msgid "This browser does not support %s (%s)."
+msgid "This module requires the module \"%s\"."
 msgstr ""
 
-#: src/Media/FileRenderer/ViewerJs.php:76
-#: view/common/pdf-viewer-inline.phtml:382 view/common/viewer-js.phtml:67
+#: src/Generic/AbstractModule.php:518
 #, php-format
-msgid "You may %sdownload it%s to view it offline."
+msgid "This module requires modules \"%s\"."
 msgstr ""
 
-#: view/common/pdf-viewer-inline.phtml:381 view/common/viewer-js.phtml:66
-msgid "This browser does not support PDF."
+#: src/Generic/AbstractModule.php:586
+#, php-format
+msgid ""
+"The module \"%s\" was automatically deactivated because the dependencies are "
+"unavailable."
 msgstr ""
 
-#: Module.php:171 src/Form/ConfigForm.php:19
-msgid "Inline style"
+#: src/Form/ViewerJsFieldset.php:16
+msgid "Block title"
+msgstr ""
+
+#: src/Form/ViewerJsFieldset.php:17
+msgid "Heading for the block, if any."
+msgstr ""
+
+#: src/Form/ViewerJsFieldset.php:29
+msgid ""
+"The url to display. Note: media attached to items are automatically rendered "
+"via common blocks, in particular \"Media\"."
+msgstr ""
+
+#: src/Form/SettingsFieldset.php:9 src/Site/BlockLayout/ViewerJs.php:20
+msgid "Viewer JS"
+msgstr ""
+
+#: src/Form/SettingsFieldset.php:18
+msgid "Property used for external file"
+msgstr ""
+
+#: src/Form/SettingsFieldset.php:19
+msgid ""
+"The property supplying the file via URL, for example \"dcterms:hasFormat\" "
+"or \"dcterms:isFormatOf\"."
+msgstr ""
+
+#: src/Form/SettingsFieldset.php:26
+msgid "Select a property…"
 msgstr ""
