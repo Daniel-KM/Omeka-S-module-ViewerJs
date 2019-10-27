@@ -8,49 +8,50 @@ use Zend\View\Renderer\PhpRenderer;
 class ViewerJs implements RendererInterface
 {
     /**
-     * These options are used only when the player is called outside of a site
-     * or when the site settings are not set.
-     *
+     * The default partial view script.
+     */
+    const PARTIAL_NAME = 'common/viewer-js';
+
+    /**
      * @var array
      */
     protected $defaultOptions = [
-        'attributes' => 'allowfullscreen="allowfullscreen"',
-        'style' => 'height: 600px; height: 70vh',
+        'attributes' => 'class="viewer-js" allowfullscreen="allowfullscreen" style="height: 600px; height: 70vh;"',
+        'template' => self::PARTIAL_NAME,
     ];
 
     /**
      * Render a media via the library ViewerJS.
      *
+     * @todo Factorize with the view helper.
+     *
      * @param PhpRenderer $view,
      * @param MediaRepresentation $media
      * @param array $options These options are managed for sites:
+     *   - template: the partial to use
      *   - attributes: set the attributes to add
-     *   - style: set the inline style
      * @return string
      */
     public function render(PhpRenderer $view, MediaRepresentation $media, array $options = [])
     {
-        $isAdmin = $view->params()->fromRoute('__ADMIN__');
-        if ($isAdmin) {
-            $attributes = $this->defaultOptions['attributes'];
-            $style = $view->setting('viewerjs_style', $this->defaultOptions['style']);
-        } else {
-            $attributes = isset($options['attributes'])
+        // Omeka 1.2.0 doesn't support $view->status().
+        $isPublic = $view->params()->fromRoute('__SITE__');
+        if ($isPublic) {
+            $template = isset($options['template'])
+                ? $options['template']
+                : $this->defaultOptions['template'];
+            $options['attributes'] = isset($options['attributes'])
                 ? $options['attributes']
-                : $view->siteSetting('viewerjs_attributes', $this->defaultOptions['attributes']);
-            $style = isset($options['style'])
-                ? $options['style']
-                : $view->siteSetting('viewerjs_style', $this->defaultOptions['style']);
+                : $this->defaultOptions['attributes'];
+        } else {
+            $template = $this->defaultOptions['template'];
+            $options['attributes'] = $this->defaultOptions['attributes'];
         }
 
-        // No fallback for HTML5.
-        $html = '<iframe height="100%%" width="100%%" %1$s%2$s src="%3$s"></iframe>';
-        $url = $view->assetUrl('vendor/viewerjs', 'ViewerJs') . '&file=' . $media->originalUrl();
-
-        return vsprintf($html, [
-            $attributes,
-            $style ? ' style="' . $style . '"' : '',
-            $view->escapeHtmlAttr($url),
+        unset($options['template']);
+        return $view->partial($template, [
+            'resource' => $media,
+            'options' => $options,
         ]);
     }
 }
