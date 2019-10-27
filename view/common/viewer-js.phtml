@@ -9,7 +9,8 @@
 
 $escapeAttr = $this->plugin('escapeHtmlAttr');
 
-$url = $this->assetUrl('vendor/viewerjs/index.html', 'ViewerJs') . '&file=' . $resource->originalUrl();
+$source = empty($options['source']) ? $resource->originalUrl() : $options['source'];
+$url = $this->assetUrl('vendor/viewerjs/index.html', 'ViewerJs') . '&file=' . $source;
 ?>
 
 <?php if (!empty($options['heading'])): ?>

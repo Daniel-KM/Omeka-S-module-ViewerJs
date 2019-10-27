@@ -55,6 +55,11 @@ return [
             // 'mp3' => 'viewerJs',
         ],
     ],
+    'view_helpers' => [
+        'invokables' => [
+            'viewerJs' => View\Helper\ViewerJs::class,
+        ],
+    ],
     'form_elements' => [
         'invokables' => [
             Form\SettingsFieldset::class => Form\SettingsFieldset::class,
