@@ -55,11 +55,6 @@ return [
             // 'mp3' => 'viewerJs',
         ],
     ],
-    'form_elements' => [
-        'invokables' => [
-            Form\SettingsFieldset::class => Form\SettingsFieldset::class,
-        ],
-    ],
     'translator' => [
         'translation_file_patterns' => [
             [
@@ -71,11 +66,5 @@ return [
         ],
     ],
     'viewerjs' => [
-        'settings' => [
-            'viewerjs_style' => 'height: 600px; height: 70vh;',
-        ],
-        'site_settings' => [
-            'viewerjs_style' => 'height: 600px; height: 70vh;',
-        ],
     ],
 ];

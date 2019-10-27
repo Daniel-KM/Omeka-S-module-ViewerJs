@@ -37,7 +37,6 @@ if (!class_exists(\Generic\AbstractModule::class)) {
 
 use Generic\AbstractModule;
 use Omeka\Module\Exception\ModuleCannotInstallException;
-use Zend\EventManager\SharedEventManagerInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 class Module extends AbstractModule
@@ -55,19 +54,5 @@ class Module extends AbstractModule
         }
 
         parent::install($serviceLocator);
-    }
-
-    public function attachListeners(SharedEventManagerInterface $sharedEventManager)
-    {
-        $sharedEventManager->attach(
-            \Omeka\Form\SettingForm::class,
-            'form.add_elements',
-            [$this, 'handleMainSettings']
-        );
-        $sharedEventManager->attach(
-            \Omeka\Form\SiteSettingsForm::class,
-            'form.add_elements',
-            [$this, 'handleSiteSettings']
-        );
     }
 }
