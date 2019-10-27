@@ -85,6 +85,26 @@ you need to set its value in your local config too:
 ```
 
 
+### Advanced display in public theme
+
+Because the viewer is integrated as a renderer and not a helper, it is possible
+to display it anywhere via the media. In particular, you can use the standard
+block "Media" to display it in any page. So just render the media, with possible
+options, that are passed directly to the template:
+
+```php
+    echo $media->render($options);
+```
+
+A block layout is available too if needed for external urls. Furthermore, a view
+helper is available to render any url anywhere:
+
+```php
+    $options = ['source' => 'https://example.org/file.mei'];
+    echo $this->viewerJs(null, $options);
+```
+
+
 Warning
 -------
 
@@ -147,7 +167,7 @@ Javascript library [`pdf.js`]:
 
 Module Viewer Js for Omeka S:
 
-* Copyright Daniel Berthereau, 2017-2018 (see [Daniel-KM])
+* Copyright Daniel Berthereau, 2017-2019 (see [Daniel-KM])
 
 
 [`Viewer Js`]: https://github.com/Daniel-KM/Omeka-S-module-ViewerJs
