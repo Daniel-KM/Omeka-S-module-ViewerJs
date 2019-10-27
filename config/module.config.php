@@ -60,9 +60,15 @@ return [
             'viewerJs' => View\Helper\ViewerJs::class,
         ],
     ],
+    'block_layouts' => [
+        'invokables' => [
+            'viewerJs' => Site\BlockLayout\ViewerJs::class,
+        ],
+    ],
     'form_elements' => [
         'invokables' => [
             Form\SettingsFieldset::class => Form\SettingsFieldset::class,
+            Form\ViewerJsFieldset::class => Form\ViewerJsFieldset::class,
         ],
     ],
     'translator' => [
@@ -78,6 +84,12 @@ return [
     'viewerjs' => [
         'settings' => [
             'viewerjs_source_property' => null,
+        ],
+        'block_settings' => [
+            'viewerJs' => [
+                'heading' => '',
+                'source' => '',
+            ],
         ],
     ],
 ];
