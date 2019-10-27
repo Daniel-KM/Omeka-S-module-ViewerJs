@@ -8,8 +8,8 @@ return [
         ],
     ],
     'file_renderers' => [
-        'factories' => [
-            'viewerJs' => Service\Media\FileRenderer\ViewerJsFactory::class,
+        'invokables' => [
+            'viewerJs' => Media\FileRenderer\ViewerJs::class,
         ],
         'aliases' => [
             'application/pdf' => 'viewerJs',
