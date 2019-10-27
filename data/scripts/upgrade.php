@@ -21,6 +21,8 @@ $api = $plugins->get('api');
 $space = strtolower(__NAMESPACE__);
 
 if (version_compare($oldVersion, '3.1.3', '<')) {
+    $this->updateWhitelist();
+
     $settings->delete('viewerjs_style');
 
     $siteSettings = $services->get('Omeka\Settings\Site');

@@ -54,5 +54,52 @@ class Module extends AbstractModule
         }
 
         parent::install($serviceLocator);
+
+        $this->updateWhitelists();
+    }
+
+    protected function updateWhitelist()
+    {
+        $settings = $this->getServiceLocator()->get('Omeka\Settings');
+
+        $whitelist = $settings->get('media_type_whitelist', []);
+        $keys = [
+            'application/pdf',
+            'application/vnd.oasis.opendocument.presentation',
+            'application/vnd.oasis.opendocument.presentation-flat-xml',
+            'application/vnd.oasis.opendocument.presentation-template',
+            'application/vnd.oasis.opendocument.spreadsheet',
+            'application/vnd.oasis.opendocument.spreadsheet-flat-xml',
+            'application/vnd.oasis.opendocument.spreadsheet-template',
+            'application/vnd.oasis.opendocument.text',
+            'application/vnd.oasis.opendocument.text-flat-xml',
+            'application/vnd.oasis.opendocument.text-template',
+        ];
+        foreach ($keys as $key) {
+            if (!in_array($key, $whitelist)) {
+                $whitelist[] = $key;
+            }
+        }
+        $settings->set('media_type_whitelist', $whitelist);
+
+        $whitelist = $settings->get('extension_whitelist', []);
+        $keys = [
+            'pdf',
+            'odp',
+            'ods',
+            'odt',
+            'fodp',
+            'fods',
+            'fodt',
+            'otp',
+            'ots',
+            'ott',
+        ];
+        foreach ($keys as $key) {
+            if (!in_array($key, $whitelist)) {
+                $whitelist[] = $key;
+            }
+        }
+        $settings->set('extension_whitelist', $whitelist);
     }
 }
