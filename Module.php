@@ -39,25 +39,26 @@ use Generic\AbstractModule;
 use Omeka\Module\Exception\ModuleCannotInstallException;
 use Zend\EventManager\Event;
 use Zend\EventManager\SharedEventManagerInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 class Module extends AbstractModule
 {
     const NAMESPACE = __NAMESPACE__;
 
-    public function install(ServiceLocatorInterface $serviceLocator)
+    protected function preInstall()
     {
         $js = __DIR__ . '/asset/vendor/viewerjs/viewer.js';
         if (!file_exists($js)) {
-            $t = $serviceLocator->get('MvcTranslator');
+            $services = $this->getServiceLocator();
+            $t = $services->get('MvcTranslator');
             throw new ModuleCannotInstallException(
                 $t->translate('The ViewerJS library should be installed.') // @translate
                     . ' ' . $t->translate('See module’s installation documentation.')); // @translate
         }
+    }
 
-        parent::install($serviceLocator);
-
-        $this->updateWhitelists();
+    protected function postInstall()
+    {
+        $this->updateWhitelist();
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager)
