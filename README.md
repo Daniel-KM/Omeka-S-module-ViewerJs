@@ -1,6 +1,9 @@
 ViewerJs (module for Omeka S)
 =============================
 
+> __New versions of this module and support for Omeka S version 3.0 and above
+> are available on [GitLab], which seems to respect users and privacy better.__
+
 [`Viewer Js`] is a module for [Omeka S] that allows to display common document
 formats (pdf, standard office ones), via a light viewer.
 
@@ -123,7 +126,7 @@ See online issues on the [module issues] page on GitHub.
 License
 -------
 
-This module is published under the [CeCILL v2.1] licence, compatible with
+This module is published under the [CeCILL v2.1] license, compatible with
 [GNU/GPL] and approved by [FSF] and [OSI].
 
 This software is governed by the CeCILL license under French law and abiding by
@@ -185,4 +188,5 @@ Module Viewer Js for Omeka S:
 [OSI]: http://opensource.org
 [Apache]: https://github.com/mozilla/pdf.js/blob/master/LICENSE
 [GNU AGPL]: https://www.gnu.org/licenses/agpl-3.0.html
+[GitLab]: https://gitlab.com/Daniel-KM
 [Daniel-KM]: https://github.com/Daniel-KM "Daniel Berthereau"
