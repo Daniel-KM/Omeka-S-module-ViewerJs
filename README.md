@@ -120,7 +120,7 @@ your archives regularly so you can roll back if needed.
 Troubleshooting
 ---------------
 
-See online issues on the [module issues] page on GitHub.
+See online issues on the [module issues] page on GitLab.
 
 
 License
@@ -173,15 +173,15 @@ Module Viewer Js for Omeka S:
 * Copyright Daniel Berthereau, 2017-2019 (see [Daniel-KM])
 
 
-[`Viewer Js`]: https://github.com/Daniel-KM/Omeka-S-module-ViewerJs
+[`Viewer Js`]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs
 [Omeka S]: https://omeka.org/s
 [`ViewerJS`]: https://viewerjs.org
-[`ViewerJs.zip`]: https://github.com/Daniel-KM/Omeka-S-module-ViewerJs/releases
+[`ViewerJs.zip`]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/releases
 [`pdf.js`]: https://mozilla.github.io/pdf.js
 [`WebODF`]: https://github.com/kogmbh/WebODF
 [Document Foundation]: https://www.documentfoundation.org
-[Pdf Viewer]: https://github.com/Daniel-KM/Omeka-S-module-PdfViewer
-[module issues]: https://github.com/Daniel-KM/Omeka-S-module-ViewerJs/issues
+[Pdf Viewer]: https://gitlab.com/Daniel-KM/Omeka-S-module-PdfViewer
+[module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/issues
 [CeCILL v2.1]: https://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
 [FSF]: https://www.fsf.org
@@ -189,4 +189,4 @@ Module Viewer Js for Omeka S:
 [Apache]: https://github.com/mozilla/pdf.js/blob/master/LICENSE
 [GNU AGPL]: https://www.gnu.org/licenses/agpl-3.0.html
 [GitLab]: https://gitlab.com/Daniel-KM
-[Daniel-KM]: https://github.com/Daniel-KM "Daniel Berthereau"
+[Daniel-KM]: https://gitlab.com/Daniel-KM "Daniel Berthereau"
