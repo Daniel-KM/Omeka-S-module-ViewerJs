@@ -4,7 +4,7 @@ ViewerJs (module for Omeka S)
 > __New versions of this module and support for Omeka S version 3.0 and above
 > are available on [GitLab], which seems to respect users and privacy better.__
 
-[`Viewer Js`] is a module for [Omeka S] that allows to display common document
+[Viewer Js] is a module for [Omeka S] that allows to display common document
 formats (pdf, standard office ones), via a light viewer.
 
 . Supported formats are:
@@ -21,9 +21,9 @@ Omeka S.
 - Images (jpg, png, gif)
 - Audio/video (via html5)
 
-Concretely, it includes the [`ViewerJS`] library, that integrates the pdf
-library of Mozilla [`pdf.js`] and the standard office formats via [`WebODF`]. The
-images and the audio/video are displayed via the browser itself.
+Concretely, it includes the [ViewerJS] library, that integrates the pdf library
+of Mozilla [pdf.js] and the standard office formats via [WebODF]. The images and
+the audio/video are displayed via the browser itself.
 
 Note: for office documents, the bigger they are, the bigger should be the
 computer of the visitor to display them.
@@ -32,12 +32,12 @@ computer of the visitor to display them.
 Installation
 ------------
 
-The module uses an external library, [`ViewerJS`], so use the release zip to
+The module uses an external library, [ViewerJS], so use the release zip to
 install it, or use and init the source.
 
 * From the zip
 
-Download the last release [`ViewerJs.zip`] from the list of releases (the master
+Download the last release [ViewerJs.zip] from the list of releases (the master
 does not contain the dependency), and uncompress it in the `modules` directory.
 
 * From the source and for development:
@@ -45,22 +45,15 @@ does not contain the dependency), and uncompress it in the `modules` directory.
 If the module was installed from the source, rename the name of the folder of
 the module to `ViewerJs`, and go to the root module, and run:
 
-```
-    npm install
-    gulp
-```
-
-The next times:
-
-```
-    npm update
-    gulp
+```sh
+npm install
+gulp
 ```
 
 * Note about WebODF
 
 Because the standards of the [Document Foundation] are "simple" and easy to
-manage, the library [`WebODF`] is mainly a stylesheet. And because this is a true
+manage, the library [WebODF] is mainly a stylesheet. And because this is a true
 standard, it is sustainable, stable and available to anyone. So it’s recommended
 for any office work.
 
@@ -82,7 +75,7 @@ section `['file_renderers']['aliases']` in `config/module.config.php` in your
 To display the pdf with the more complete viewer provided by the module [Pdf Viewer],
 you need to set its value in your local config too:
 
-```
+```php
             'application/pdf' => 'pdfViewer',
             'pdf' => 'pdfViewer',
 ```
@@ -96,15 +89,15 @@ block "Media" to display it in any page. So just render the media, with possible
 options, that are passed directly to the template:
 
 ```php
-    echo $media->render($options);
+echo $media->render($options);
 ```
 
 A block layout is available too if needed for external urls. Furthermore, a view
 helper is available to render any url anywhere:
 
 ```php
-    $options = ['source' => 'https://example.org/file.mei'];
-    echo $this->viewerJs(null, $options);
+$options = ['source' => 'https://example.org/file.mei'];
+echo $this->viewerJs(null, $options);
 ```
 
 
@@ -152,33 +145,33 @@ conditions as regards security.
 The fact that you are presently reading this means that you have had knowledge
 of the CeCILL license and that you accept its terms.
 
-The [`ViewerJS`] library is published under the [GNU AGPL] license.
-The [`WebODF`] library is published under the [GNU AGPL] license.
-The [`pdf.js`] library is published under the [Apache] license.
+The [ViewerJS] library is published under the [GNU AGPL] license.
+The [WebODF] library is published under the [GNU AGPL] license.
+The [pdf.js] library is published under the [Apache] license.
 
 
 Copyright
 ---------
 
-[`ViewerJS`] and [`WebODF`] libraries:
+[ViewerJS] and [WebODF] libraries:
 
 * Copyright KO GmbH, 2013-2017
 
-Javascript library [`pdf.js`]:
+Javascript library [pdf.js]:
 
 * Copyright Mozilla, 2011-2017
 
 Module Viewer Js for Omeka S:
 
-* Copyright Daniel Berthereau, 2017-2019 (see [Daniel-KM])
+* Copyright Daniel Berthereau, 2017-2020 (see [Daniel-KM])
 
 
-[`Viewer Js`]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs
+[Viewer Js]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs
 [Omeka S]: https://omeka.org/s
-[`ViewerJS`]: https://viewerjs.org
-[`ViewerJs.zip`]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/releases
-[`pdf.js`]: https://mozilla.github.io/pdf.js
-[`WebODF`]: https://github.com/kogmbh/WebODF
+[ViewerJS]: https://viewerjs.org
+[ViewerJs.zip]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/releases
+[pdf.js]: https://mozilla.github.io/pdf.js
+[WebODF]: https://github.com/kogmbh/WebODF
 [Document Foundation]: https://www.documentfoundation.org
 [Pdf Viewer]: https://gitlab.com/Daniel-KM/Omeka-S-module-PdfViewer
 [module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/issues
