@@ -3,7 +3,7 @@ namespace ViewerJs\Media\FileRenderer;
 
 use Omeka\Api\Representation\MediaRepresentation;
 use Omeka\Media\FileRenderer\RendererInterface;
-use Zend\View\Renderer\PhpRenderer;
+use Laminas\View\Renderer\PhpRenderer;
 
 class ViewerJs implements RendererInterface
 {

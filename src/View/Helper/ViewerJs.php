@@ -3,7 +3,7 @@
 namespace ViewerJs\View\Helper;
 
 use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class ViewerJs extends AbstractHelper
 {
