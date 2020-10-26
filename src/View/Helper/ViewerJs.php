@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ViewerJs\View\Helper;
 
-use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
 use Laminas\View\Helper\AbstractHelper;
+use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
 
 class ViewerJs extends AbstractHelper
 {
@@ -89,12 +89,10 @@ class ViewerJs extends AbstractHelper
         // Omeka 1.2.0 doesn't support $view->status().
         $isPublic = $view->params()->fromRoute('__SITE__');
         if ($isPublic) {
-            $template = isset($options['template'])
-                ? $options['template']
-                : $this->defaultOptions['template'];
-            $options['attributes'] = isset($options['attributes'])
-                ? $options['attributes']
-                : $this->defaultOptions['attributes'];
+            $template = $options['template']
+                ?? $this->defaultOptions['template'];
+            $options['attributes'] = $options['attributes']
+                ?? $this->defaultOptions['attributes'];
         } else {
             $template = $this->defaultOptions['template'];
             $options['attributes'] = $this->defaultOptions['attributes'];

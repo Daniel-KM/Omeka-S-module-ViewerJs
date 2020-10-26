@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 namespace ViewerJs\Media\FileRenderer;
 
+use Laminas\View\Renderer\PhpRenderer;
 use Omeka\Api\Representation\MediaRepresentation;
 use Omeka\Media\FileRenderer\RendererInterface;
-use Laminas\View\Renderer\PhpRenderer;
 
 class ViewerJs implements RendererInterface
 {
@@ -37,12 +37,10 @@ class ViewerJs implements RendererInterface
         // Omeka 1.2.0 doesn't support $view->status().
         $isPublic = $view->params()->fromRoute('__SITE__');
         if ($isPublic) {
-            $template = isset($options['template'])
-                ? $options['template']
-                : $this->defaultOptions['template'];
-            $options['attributes'] = isset($options['attributes'])
-                ? $options['attributes']
-                : $this->defaultOptions['attributes'];
+            $template = $options['template']
+                ?? $this->defaultOptions['template'];
+            $options['attributes'] = $options['attributes']
+                ?? $this->defaultOptions['attributes'];
         } else {
             $template = $this->defaultOptions['template'];
             $options['attributes'] = $this->defaultOptions['attributes'];
