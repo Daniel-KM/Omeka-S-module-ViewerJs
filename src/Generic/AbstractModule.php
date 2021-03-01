@@ -66,20 +66,20 @@ abstract class AbstractModule extends \Omeka\Module\AbstractModule
                 $translator->translate('This module requires the module "%s".'), // @translate
                 $this->dependency
             );
-            throw new ModuleCannotInstallException($message);
+            throw new ModuleCannotInstallException((string) $message);
         }
         if (!$this->checkDependencies()) {
             $message = new Message(
                 $translator->translate('This module requires modules "%s".'), // @translate
                 implode('", "', $this->dependencies)
             );
-            throw new ModuleCannotInstallException($message);
+            throw new ModuleCannotInstallException((string) $message);
         }
         if (!$this->checkAllResourcesToInstall()) {
             $message = new Message(
                 $translator->translate('This module has resources that connot be installed.') // @translate
             );
-            throw new ModuleCannotInstallException($message);
+            throw new ModuleCannotInstallException((string) $message);
         }
         $this->execSqlFromFile($this->modulePath() . '/data/install/schema.sql');
         $this
@@ -181,9 +181,10 @@ abstract class AbstractModule extends \Omeka\Module\AbstractModule
             return '';
         }
 
-        $form = $services->get('FormElementManager')->get($formClass);
+        $form = $formManager->get($formClass);
         $form->init();
         $form->setData($data);
+        $form->prepare();
         return $renderer->formCollection($form);
     }
 
@@ -248,9 +249,6 @@ abstract class AbstractModule extends \Omeka\Module\AbstractModule
         }
     }
 
-    /**
-     * @return string
-     */
     protected function modulePath(): string
     {
         return OMEKA_PATH . '/modules/' . static::NAMESPACE;
