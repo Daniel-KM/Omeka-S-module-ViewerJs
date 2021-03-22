@@ -34,13 +34,10 @@ class ViewerJs implements RendererInterface
      */
     public function render(PhpRenderer $view, MediaRepresentation $media, array $options = [])
     {
-        // Omeka 1.2.0 doesn't support $view->status().
-        $isPublic = $view->params()->fromRoute('__SITE__');
-        if ($isPublic) {
-            $template = $options['template']
-                ?? $this->defaultOptions['template'];
-            $options['attributes'] = $options['attributes']
-                ?? $this->defaultOptions['attributes'];
+        $status = $this->getView()->status();
+        if ($status->isSiteRequest()) {
+            $template = $options['template'] ?? $this->defaultOptions['template'];
+            $options['attributes'] = $options['attributes'] ?? $this->defaultOptions['attributes'];
         } else {
             $template = $this->defaultOptions['template'];
             $options['attributes'] = $this->defaultOptions['attributes'];

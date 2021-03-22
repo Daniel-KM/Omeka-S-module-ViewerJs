@@ -86,13 +86,10 @@ class ViewerJs extends AbstractHelper
     {
         $view = $this->getView();
 
-        // Omeka 1.2.0 doesn't support $view->status().
-        $isPublic = $view->params()->fromRoute('__SITE__');
-        if ($isPublic) {
-            $template = $options['template']
-                ?? $this->defaultOptions['template'];
-            $options['attributes'] = $options['attributes']
-                ?? $this->defaultOptions['attributes'];
+        $status = $view->status();
+        if ($status->isSiteRequest()) {
+            $template = $options['template'] ?? $this->defaultOptions['template'];
+            $options['attributes'] = $options['attributes'] ?? $this->defaultOptions['attributes'];
         } else {
             $template = $this->defaultOptions['template'];
             $options['attributes'] = $this->defaultOptions['attributes'];
