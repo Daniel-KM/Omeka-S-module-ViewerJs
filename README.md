@@ -47,8 +47,7 @@ If the module was installed from the source, rename the name of the folder of
 the module to `ViewerJs`, and go to the root module, and run:
 
 ```sh
-npm install
-gulp
+composer install --no-dev
 ```
 
 * Note about WebODF
@@ -64,6 +63,8 @@ Config
 
 All resources of Omeka S that are in pdf, odt, fodt, ods, fods, odp, fodp, and
 txt are automatically displayed by the ViewerJs, so you have nothing to do.
+
+Sources files can use uploaded files or url, so you can try an url such: https://github.com/Daniel-KM/ViewerJS/raw/master/test/files/presentation.odp.
 
 Options can be set differently for the admin board or each site. Only one option
 is available directly: the styles of the iframe. Other ones are managed via the
@@ -97,7 +98,7 @@ A block layout is available too if needed for external urls. Furthermore, a view
 helper is available to render any url anywhere:
 
 ```php
-$options = ['source' => 'https://example.org/file.mei'];
+$options = ['source' => 'https://example.org/my-file.odp'];
 echo $this->viewerJs(null, $options);
 ```
 

@@ -28,5 +28,33 @@
         "psr-4": {
             "ViewerJs\\": "src/"
         }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "daniel-km/viewerjs",
+                "version": "0.7.2",
+                "type": "omeka-module-asset",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/Daniel-KM/ViewerJS/releases/download/0.7.2/viewerjs-0.7.2.zip",
+                    "reference": "0.7.2"
+                }
+            }
+        }
+    ],
+    "require": {
+        "oomphinc/composer-installers-extender": "^2.0",
+        "daniel-km/viewerjs": "^0.7.2"
+    },
+    "extra": {
+        "installer-types": ["omeka-module-asset"],
+        "installer-paths": {
+            "asset/vendor/{$name}/": [
+                "type:omeka-module-asset",
+                "daniel-km/viewerjs"
+            ]
+        }
     }
 }
