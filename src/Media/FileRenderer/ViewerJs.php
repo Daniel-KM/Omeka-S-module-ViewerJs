@@ -34,7 +34,7 @@ class ViewerJs implements RendererInterface
      */
     public function render(PhpRenderer $view, MediaRepresentation $media, array $options = [])
     {
-        $status = $this->getView()->status();
+        $status = $view->status();
         if ($status->isSiteRequest()) {
             $template = $options['template'] ?? $this->defaultOptions['template'];
             $options['attributes'] = $options['attributes'] ?? $this->defaultOptions['attributes'];
