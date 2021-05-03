@@ -102,6 +102,21 @@ $options = ['source' => 'https://example.org/my-file.odp'];
 echo $this->viewerJs(null, $options);
 ```
 
+### Fix with module Dropbox
+
+When Dropbox is used as a backend for files, you may need to hack the asset file
+"asset/vendor/viewerjs/viewer.js", commenting lines 305 to 309:
+
+```js
+/*
+        if ( documentUrl.indexOf('?') !== -1 ) {
+            documentUrl += '&contentDispositionType=attachment';
+        } else {
+            documentUrl += '?contentDispositionType=attachment';
+        }
+*/
+```
+
 
 Warning
 -------
