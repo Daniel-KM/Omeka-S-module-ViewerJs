@@ -35,7 +35,7 @@
             "package": {
                 "name": "daniel-km/viewerjs",
                 "version": "0.7.2",
-                "type": "omeka-module-asset",
+                "type": "omeka-addon-asset",
                 "dist": {
                     "type": "zip",
                     "url": "https://github.com/Daniel-KM/ViewerJS/releases/download/0.7.2/viewerjs-0.7.2.zip",
@@ -49,11 +49,10 @@
         "daniel-km/viewerjs": "^0.7.2"
     },
     "extra": {
-        "installer-types": ["omeka-module-asset"],
+        "installer-types": ["omeka-addon-asset"],
         "installer-paths": {
             "asset/vendor/{$name}/": [
-                "type:omeka-module-asset",
-                "daniel-km/viewerjs"
+                "type:omeka-addon-asset"
             ]
         }
     }
