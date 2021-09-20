@@ -39,7 +39,7 @@
                 "dist": {
                     "type": "zip",
                     "url": "https://github.com/Daniel-KM/ViewerJS/releases/download/0.7.2/viewerjs-0.7.2.zip",
-                    "reference": "0.7.2"
+                    "reference": ""
                 }
             }
         }
