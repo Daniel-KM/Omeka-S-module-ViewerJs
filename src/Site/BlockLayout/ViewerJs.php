@@ -52,6 +52,9 @@ class ViewerJs extends AbstractBlockLayout
             return '';
         }
 
-        return $view->partial(self::PARTIAL_NAME, ['options' => $data]);
+        return $view->partial(self::PARTIAL_NAME, [
+            'block' => $block,
+            'options' => $data,
+        ]);
     }
 }
