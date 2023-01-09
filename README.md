@@ -180,7 +180,7 @@ Javascript library [pdf.js]:
 
 Module Viewer Js for Omeka S:
 
-* Copyright Daniel Berthereau, 2017-2020 (see [Daniel-KM])
+* Copyright Daniel Berthereau, 2017-2023 (see [Daniel-KM])
 
 
 [Viewer Js]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs
