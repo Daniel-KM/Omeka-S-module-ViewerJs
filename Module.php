@@ -77,8 +77,10 @@ class Module extends AbstractModule
 
     public function handleMainSettingsFilters(Event $event): void
     {
-        $inputFilter = $event->getParam('inputFilter');
-        $inputFilter->get('viewerjs')
+        $inputFilter = version_compare(\Omeka\Module::VERSION, '4', '<')
+            ? $event->getParam('inputFilter')->get('viewerjs')
+            : $event->getParam('inputFilter');
+        $inputFilter
             ->add([
                 'name' => 'viewerjs_source_property',
                 'required' => false,
