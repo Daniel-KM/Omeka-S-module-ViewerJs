@@ -11,6 +11,7 @@ class SettingsFieldset extends Fieldset
     public function init(): void
     {
         $this
+            ->setAttribute('id', 'viewer-js')
             ->add([
                 'name' => 'viewerjs_source_property',
                 'type' => PropertySelect::class,
