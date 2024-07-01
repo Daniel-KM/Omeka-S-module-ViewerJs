@@ -22,6 +22,11 @@ class ViewerJs extends AbstractHelper
      *
      * @param AbstractResourceEntityRepresentation|null $resource
      * @param array $options
+     * - source (string): url to display, required when resource is not available.
+     * - template (string): the template to use.
+     * - attributes (string): attributes to add to the iframe.
+     * - heading (string): Deprecated. Will be removed in a future version.
+     * Other options are passed
      * @return string Html string corresponding to the viewer.
      */
     public function __invoke($resource, $options = [])

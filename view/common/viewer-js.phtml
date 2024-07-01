@@ -1,20 +1,36 @@
 <?php
 /**
  * @var \Laminas\View\Renderer\PhpRenderer $this
- * @var \Omeka\Api\Representation\AbstractResourceEntityRepresentation $resource
+ * @var \Omeka\Api\Representation\AbstractResourceEntityRepresentation|null $resource
  * @var array $options
+ * - source (string): url to display, required when resource is not available.
+ * - attributes (string): attributes to add to the iframe.
+ * - heading (string): Deprecated. Will be removed in a future version.
  */
 
 // No fallback for iframe in HTML5.
 
-$escapeAttr = $this->plugin('escapeHtmlAttr');
+if (empty($resource) && empty($options['source'])) return;
 
-$source = empty($options['source']) ? $resource->originalUrl() : $options['source'];
-$url = $this->assetUrl('vendor/viewerjs/index.html', 'ViewerJs') . '&file=' . $source;
+$plugins = $this->getHelperPluginManager();
+$escape = $plugins->get('escapeHtml');
+$assetUrl = $plugins->get('assetUrl');
+$escapeAttr = $plugins->get('escapeHtmlAttr');
+
+if (empty($options['source'])) {
+    $media = $resource->primaryMedia();
+    if (!$media || !$media->hasOriginal()) return;
+    $urlSource = $media->originalUrl();
+    if (!$urlSource) return;
+} else {
+    $urlSource = $options['source'];
+}
+
+$sourceUrl = $assetUrl('vendor/viewerjs/index.html', 'ViewerJs') . '&file=' . rawurlencode($urlSource);
 ?>
 
 <?php if (!empty($options['heading'])): ?>
-    <h2><?= $options['heading'] ?></h2>
+    <h2><?= $escape($options['heading']) ?></h2>
 <?php endif; ?>
 
-<iframe loading="lazy" height="100%" width="100%" <?= $options['attributes'] ?>  src="<?= $escapeAttr($url) ?>"></iframe>
+<iframe loading="lazy" height="100%" width="100%" <?= $options['attributes'] ?>  src="<?= $escapeAttr($sourceUrl) ?>"></iframe>
