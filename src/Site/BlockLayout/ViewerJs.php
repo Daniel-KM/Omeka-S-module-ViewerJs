@@ -7,8 +7,9 @@ use Omeka\Api\Representation\SitePageBlockRepresentation;
 use Omeka\Api\Representation\SitePageRepresentation;
 use Omeka\Api\Representation\SiteRepresentation;
 use Omeka\Site\BlockLayout\AbstractBlockLayout;
+use Omeka\Site\BlockLayout\TemplateableBlockLayoutInterface;
 
-class ViewerJs extends AbstractBlockLayout
+class ViewerJs extends AbstractBlockLayout implements TemplateableBlockLayoutInterface
 {
     /**
      * The default partial view script.
@@ -32,7 +33,7 @@ class ViewerJs extends AbstractBlockLayout
         $defaultSettings = $services->get('Config')['viewerjs']['block_settings']['viewerJs'];
         $blockFieldset = \ViewerJs\Form\ViewerJsFieldset::class;
 
-        $data = $block ? $block->data() + $defaultSettings : $defaultSettings;
+        $data = $block ? ($block->data() ?? []) + $defaultSettings : $defaultSettings;
 
         $dataForm = [];
         foreach ($data as $key => $value) {
@@ -45,16 +46,20 @@ class ViewerJs extends AbstractBlockLayout
         return $view->formCollection($fieldset);
     }
 
-    public function render(PhpRenderer $view, SitePageBlockRepresentation $block)
+    public function render(PhpRenderer $view, SitePageBlockRepresentation $block, $templateViewScript = self::PARTIAL_NAME)
     {
         $data = $block->data();
         if (empty($data['source'])) {
             return '';
         }
 
-        return $view->partial(self::PARTIAL_NAME, [
+        $vars = [
             'block' => $block,
-            'options' => $data,
-        ]);
+        ] + $data;
+
+        // For compatibility with old themes.
+        $vars['options'] = $data;
+
+        return $view->partial($templateViewScript, $vars);
     }
 }

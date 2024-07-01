@@ -1,7 +1,9 @@
 <?php
 /**
  * @var \Laminas\View\Renderer\PhpRenderer $this
- * @var array $options
+ * @var string $source
+ *
+ * @var array $options Deprecated. The only option is the source url.
  */
 
-echo $this->viewerJs(null, $options);
+echo $this->viewerJs(null, ['source' => $source]);
