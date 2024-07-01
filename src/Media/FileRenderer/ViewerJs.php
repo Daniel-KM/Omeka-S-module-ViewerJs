@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace ViewerJs\Media\FileRenderer;
 
 use Laminas\View\Renderer\PhpRenderer;

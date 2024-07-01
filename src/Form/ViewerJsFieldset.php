@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 namespace ViewerJs\Form;
 
 use Laminas\Form\Element;
@@ -9,17 +10,6 @@ class ViewerJsFieldset extends Fieldset
     public function init(): void
     {
         $this
-            ->add([
-                'name' => 'o:block[__blockIndex__][o:data][heading]',
-                'type' => Element\Text::class,
-                'options' => [
-                    'label' => 'Block title', // @translate
-                ],
-                'attributes' => [
-                    'id' => 'viewer-js-heading',
-                    'required' => false,
-                ],
-            ])
             ->add([
                 'name' => 'o:block[__blockIndex__][o:data][source]',
                 'type' => Element\Url::class,

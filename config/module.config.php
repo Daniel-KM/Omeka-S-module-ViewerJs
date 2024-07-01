@@ -93,7 +93,6 @@ return [
         ],
         'block_settings' => [
             'viewerJs' => [
-                'heading' => '',
                 'source' => '',
             ],
         ],
