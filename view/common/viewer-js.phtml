@@ -17,4 +17,4 @@ $url = $this->assetUrl('vendor/viewerjs/index.html', 'ViewerJs') . '&file=' . $s
     <h2><?= $options['heading'] ?></h2>
 <?php endif; ?>
 
-<iframe height="100%" width="100%" <?= $options['attributes'] ?>  src="<?= $escapeAttr($url) ?>"></iframe>
+<iframe loading="lazy" height="100%" width="100%" <?= $options['attributes'] ?>  src="<?= $escapeAttr($url) ?>"></iframe>
