@@ -2,7 +2,7 @@
 
 namespace ViewerJs;
 
-use Omeka\Stdlib\Message;
+use Common\Stdlib\PsrMessage;
 
 /**
  * @var Module $this
@@ -47,6 +47,15 @@ if (version_compare($oldVersion, '3.1.3', '<')) {
 }
 
 if (version_compare($oldVersion, '3.4.4', '<')) {
+    /**
+     * Migrate blocks of this module to new blocks of Omeka S v4.1.
+     *
+     * Replace filled settting "heading" by a specific block "Heading".
+     *
+     * @var \Laminas\Log\Logger $logger
+     *
+     * @see \Omeka\Db\Migrations\MigrateBlockLayoutData
+     */
     $logger = $services->get('Omeka\Logger');
     $pageRepository = $entityManager->getRepository(\Omeka\Entity\SitePage::class);
     $blocksRepository = $entityManager->getRepository(\Omeka\Entity\SitePageBlock::class);
