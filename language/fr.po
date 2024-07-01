@@ -3,24 +3,24 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-01 00:00+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-07-01 00:00+0000\n"
+"Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
+"Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/scripts/upgrade.php:29 Module.php:66
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
-msgstr ""
+msgstr "Le module %1$s doit être mis à niveau à la version %2$s ou ultérieure."
 
 #: data/scripts/upgrade.php:105
 msgid ""
@@ -28,39 +28,48 @@ msgid ""
 "\"Heading\" or \"Html\" were prepended to all blocks that had a filled "
 "heading. You may check pages for styles: {json}"
 msgstr ""
+"Le paramètre « Titre » a été supprimé du bloc Viewer Js. Un nouveau bloc "
+"« Titre » ou « Html » a été ajouté à tous les blocs qui contenait une "
+"entête. Vous pouvez vérifier les pages pour les styles : {json}"
 
 #: Module.php:75
 msgid ""
 "The ViewerJS library should be installed. See module’s installation "
 "documentation."
 msgstr ""
+"La bibliothèque ViewerJS doit être installée. Consulter la documentation "
+"d’installation du module."
 
 #: src/Form/SettingsFieldset.php:10
 #: src/Site/ResourcePageBlockLayout/ViewerJs.php:13
 #: src/Site/BlockLayout/ViewerJs.php:21
 msgid "Viewer JS"
-msgstr ""
+msgstr "Viewer JS"
 
 #: src/Form/SettingsFieldset.php:17
 msgid "Players"
-msgstr ""
+msgstr "Lecteurs"
 
 #: src/Form/SettingsFieldset.php:30
 msgid "Property used for external file"
-msgstr ""
+msgstr "Propriété utilisé pour un fichier externe"
 
 #: src/Form/SettingsFieldset.php:31
 msgid ""
 "The property supplying the file via URL, for example \"dcterms:hasFormat\" "
 "or \"dcterms:isFormatOf\"."
 msgstr ""
+"Cette propriété permet de disposer du fichier via une url, par exemple "
+"« dcterms:hasFormat » ou « dcterms:isFormatOf »."
 
 #: src/Form/SettingsFieldset.php:38
 msgid "Select a property…"
-msgstr ""
+msgstr "Choisir une propriété…"
 
 #: src/Form/ViewerJsFieldset.php:18
 msgid ""
 "The url to display. Note: media attached to items are automatically rendered "
 "via common blocks, in particular \"Media\"."
 msgstr ""
+"L’url à afficher. Note : les médias attachés aux items sont automatiquement "
+"rendus via les blocs par défaut, notamment « Média »."
