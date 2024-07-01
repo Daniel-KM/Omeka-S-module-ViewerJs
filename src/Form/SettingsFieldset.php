@@ -2,8 +2,8 @@
 
 namespace ViewerJs\Form;
 
+use Common\Form\Element as CommonElement;
 use Laminas\Form\Fieldset;
-use Omeka\Form\Element\PropertySelect;
 
 class SettingsFieldset extends Fieldset
 {
@@ -24,7 +24,7 @@ class SettingsFieldset extends Fieldset
             ->setOption('element_groups', $this->elementGroups)
             ->add([
                 'name' => 'viewerjs_source_property',
-                'type' => PropertySelect::class,
+                'type' => CommonElement\OptionalPropertySelect::class,
                 'options' => [
                     'element_group' => 'player',
                     'label' => 'Property used for external file', // @translate

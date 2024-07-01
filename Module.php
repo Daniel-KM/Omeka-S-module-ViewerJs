@@ -27,32 +27,54 @@
  * The fact that you are presently reading this means that you have had
  * knowledge of the CeCILL license and that you accept its terms.
  */
+
 namespace ViewerJs;
 
-if (!class_exists(\Generic\AbstractModule::class)) {
-    require file_exists(dirname(__DIR__) . '/Generic/AbstractModule.php')
-        ? dirname(__DIR__) . '/Generic/AbstractModule.php'
-        : __DIR__ . '/src/Generic/AbstractModule.php';
+if (!class_exists(\Common\TraitModule::class)) {
+    require_once dirname(__DIR__) . '/Common/TraitModule.php';
 }
 
-use Generic\AbstractModule;
+use Common\Stdlib\PsrMessage;
+use Common\TraitModule;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;
-use Omeka\Module\Exception\ModuleCannotInstallException;
+use Omeka\Module\AbstractModule;
 
+/**
+ * Viewer Js
+ *
+ * Display standard document formats (pdf and office: pdf, odt, ods, odp) in a
+ * light unified player.
+ *
+ * @copyright Daniel Berthereau, 2017-2024
+ * @license http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ */
 class Module extends AbstractModule
 {
+    use TraitModule;
+
     const NAMESPACE = __NAMESPACE__;
 
     protected function preInstall(): void
     {
+        $services = $this->getServiceLocator();
+        $translate = $services->get('ControllerPluginManager')->get('translate');
+        $translator = $services->get('MvcTranslator');
+
+        if (!method_exists($this, 'checkModuleActiveVersion') || !$this->checkModuleActiveVersion('Common', '3.4.60')) {
+            $message = new \Omeka\Stdlib\Message(
+                $translate('The module %1$s should be upgraded to version %2$s or later.'), // @translate
+                'Common', '3.4.60'
+            );
+            throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message);
+        }
+
         $js = __DIR__ . '/asset/vendor/viewerjs/viewer.js';
         if (!file_exists($js)) {
-            $services = $this->getServiceLocator();
-            $t = $services->get('MvcTranslator');
-            throw new ModuleCannotInstallException(
-                $t->translate('The ViewerJS library should be installed.') // @translate
-                    . ' ' . $t->translate('See module’s installation documentation.')); // @translate
+            $message = new PsrMessage(
+                'The ViewerJS library should be installed. See module’s installation documentation.' // @translate
+            );
+            throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message->setTranslator($translator));
         }
     }
 
@@ -68,23 +90,6 @@ class Module extends AbstractModule
             'form.add_elements',
             [$this, 'handleMainSettings']
         );
-        $sharedEventManager->attach(
-            \Omeka\Form\SettingForm::class,
-            'form.add_input_filters',
-            [$this, 'handleMainSettingsFilters']
-        );
-    }
-
-    public function handleMainSettingsFilters(Event $event): void
-    {
-        $inputFilter = version_compare(\Omeka\Module::VERSION, '4', '<')
-            ? $event->getParam('inputFilter')->get('viewerjs')
-            : $event->getParam('inputFilter');
-        $inputFilter
-            ->add([
-                'name' => 'viewerjs_source_property',
-                'required' => false,
-            ]);
     }
 
     protected function updateWhitelist(): void
