@@ -26,12 +26,23 @@ Concretely, it includes the [ViewerJS] library, that integrates the pdf library
 of Mozilla [pdf.js] and the standard office formats via [WebODF]. The images and
 the audio/video are displayed via the browser itself.
 
-Note: for office documents, the bigger they are, the bigger should be the
-computer of the visitor to display them.
+* Note about WebODF
+
+For office documents, the bigger they are, the bigger should be the computer of
+the visitor to display them.
+
+Because the standards of the [Document Foundation] are "simple" and easy to
+manage, the library [WebODF] is mainly a stylesheet. And because this is a true
+standard, it is sustainable, stable and available to anyone. So it’s recommended
+for any office work.
 
 
 Installation
 ------------
+
+See general end user documentation for [installing a module].
+
+This module requires the module [Common], that should be installed first.
 
 The module uses an external library, [ViewerJS], so use the release zip to
 install it, or use and init the source.
@@ -41,7 +52,7 @@ install it, or use and init the source.
 Download the last release [ViewerJs.zip] from the list of releases (the master
 does not contain the dependency), and uncompress it in the `modules` directory.
 
-* From the source and for development:
+* From the source and for development
 
 If the module was installed from the source, rename the name of the folder of
 the module to `ViewerJs`, and go to the root module, and run:
@@ -50,12 +61,7 @@ the module to `ViewerJs`, and go to the root module, and run:
 composer install --no-dev
 ```
 
-* Note about WebODF
-
-Because the standards of the [Document Foundation] are "simple" and easy to
-manage, the library [WebODF] is mainly a stylesheet. And because this is a true
-standard, it is sustainable, stable and available to anyone. So it’s recommended
-for any office work.
+Then install it like any other Omeka module and follow the config instructions.
 
 
 Config
@@ -180,12 +186,14 @@ Javascript library [pdf.js]:
 
 Module Viewer Js for Omeka S:
 
-* Copyright Daniel Berthereau, 2017-2023 (see [Daniel-KM])
+* Copyright Daniel Berthereau, 2017-2025 (see [Daniel-KM])
 
 
 [Viewer Js]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs
 [Omeka S]: https://omeka.org/s
 [ViewerJS]: https://viewerjs.org
+[installing a module]: https://omeka.org/s/docs/user-manual/modules/
+[Common]: https://gitlab.com/Daniel-KM/Omeka-S-module-Common
 [ViewerJs.zip]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/releases
 [pdf.js]: https://mozilla.github.io/pdf.js
 [WebODF]: https://github.com/kogmbh/WebODF
