@@ -27,7 +27,7 @@ class SettingsFieldset extends Fieldset
                 'type' => CommonElement\OptionalPropertySelect::class,
                 'options' => [
                     'element_group' => 'player',
-                    'label' => 'Property used for external file', // @translate
+                    'label' => 'ViewerJS: Property used for external file', // @translate
                     'info' => 'The property supplying the file via URL, for example "dcterms:hasFormat" or "dcterms:isFormatOf".', // @translate
                     'empty_option' => '',
                     'term_as_value' => true,
