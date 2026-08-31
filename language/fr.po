@@ -7,22 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-01 00:00+0000\n"
-"PO-Revision-Date: 2024-07-01 00:00+0000\n"
+"POT-Creation-Date: 2026-08-31 00:00+0000\n"
+"PO-Revision-Date: 2026-08-31 00:00+0000\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/scripts/upgrade.php:29 Module.php:66
+#: data/scripts/upgrade.php:29 Module.php:84
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
 msgstr "Le module %1$s doit être mis à niveau à la version %2$s ou ultérieure."
 
-#: data/scripts/upgrade.php:105
+#: data/scripts/upgrade.php:33
+msgid "Missing requirement. Unable to upgrade."
+msgstr "Pré-requis absent. Impossible de mettre à jour."
+
+#: data/scripts/upgrade.php:115
 msgid ""
 "The setting \"heading\" was removed from block Viewer Js. New blocks "
 "\"Heading\" or \"Html\" were prepended to all blocks that had a filled "
@@ -32,7 +36,7 @@ msgstr ""
 "« Titre » ou « Html » a été ajouté à tous les blocs qui contenait une "
 "entête. Vous pouvez vérifier les pages pour les styles : {json}"
 
-#: Module.php:75
+#: Module.php:95
 msgid ""
 "The ViewerJS library should be installed. See module’s installation "
 "documentation."
@@ -51,8 +55,8 @@ msgid "Players"
 msgstr "Lecteurs"
 
 #: src/Form/SettingsFieldset.php:30
-msgid "Property used for external file"
-msgstr "Propriété utilisé pour un fichier externe"
+msgid "ViewerJS: Property used for external file"
+msgstr "ViewerJS : Propriété utilisée pour un fichier externe"
 
 #: src/Form/SettingsFieldset.php:31
 msgid ""
