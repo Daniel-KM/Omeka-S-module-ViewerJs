@@ -1,32 +1,47 @@
 {
     "name": "daniel-km/omeka-s-module-viewer-js",
-    "description": "ViewerJs (module for Omeka S)",
-    "type": "library",
+    "type": "omeka-s-module",
+    "description": "Module for Omeka S: Display standard document formats (pdf and office: pdf, odt, ods, odp) in a light unified player.",
+    "keywords": [
+        "Omeka S",
+        "Omeka S module",
+        "viewer",
+        "display",
+        "document viewer",
+        "open document",
+        "pdf",
+        "odt",
+        "ods",
+        "odp"
+    ],
     "license": "CECILL-2.1",
+    "homepage": "https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs",
     "authors": [
         {
             "name": "Daniel Berthereau",
             "email": "Daniel.packagist@Berthereau.net"
         }
     ],
-    "homepage": "https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs",
     "support": {
         "issues": "https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/issues",
         "forum": "https://forum.omeka.org/"
     },
-    "keywords": [
-        "Omeka S",
-        "Omeka S module",
-        "viewer",
-        "OpenDocument",
-        "pdf",
-        "odt",
-        "ods",
-        "odp"
-    ],
+    "_require (not set until Omeka S merges PR #2432)": {
+        "omeka/omeka-s": "^4.1",
+        "daniel-km/omeka-s-module-common": "*"
+    },
+    "require": {
+        "oomphinc/composer-installers-extender": "^2.0",
+        "daniel-km/viewerjs": "^0.7.2"
+    },
     "autoload": {
         "psr-4": {
             "ViewerJs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ViewerJsTest\\": "tests/ViewerJsTest/"
         }
     },
     "repositories": [
@@ -44,22 +59,19 @@
             }
         }
     ],
-    "require": {
-        "oomphinc/composer-installers-extender": "^2.0",
-        "daniel-km/viewerjs": "^0.7.2"
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "oomphinc/composer-installers-extender": true
+        }
     },
     "extra": {
+        "installer-name": "ViewerJs",
         "installer-types": ["omeka-addon-asset"],
         "installer-paths": {
             "asset/vendor/{$name}/": [
                 "type:omeka-addon-asset"
             ]
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/installers": true,
-            "oomphinc/composer-installers-extender": true
         }
     }
 }
