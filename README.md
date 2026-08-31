@@ -70,7 +70,7 @@ Config
 All resources of Omeka S that are in pdf, odt, fodt, ods, fods, odp, fodp, and
 txt are automatically displayed by the ViewerJs, so you have nothing to do.
 
-Sources files can use uploaded files or url, so you can try an url such: https://github.com/Daniel-KM/ViewerJS/raw/master/test/files/presentation.odp.
+Sources files can use uploaded files or url, so you can try an url such: https://gitlab.com/Daniel-KM/ViewerJS/-/raw/master/test/files/presentation.odp.
 
 Options can be set differently for the admin board or each site. Only one option
 is available directly: the styles of the iframe. Other ones are managed via the
@@ -186,7 +186,7 @@ Javascript library [pdf.js]:
 
 Module Viewer Js for Omeka S:
 
-* Copyright Daniel Berthereau, 2017-2025 (see [Daniel-KM])
+* Copyright Daniel Berthereau, 2017-2026 (see [Daniel-KM])
 
 
 [Viewer Js]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs
