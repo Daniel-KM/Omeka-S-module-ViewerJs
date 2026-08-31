@@ -31,8 +31,7 @@
         "daniel-km/omeka-s-module-common": "*"
     },
     "require": {
-        "oomphinc/composer-installers-extender": "^2.0",
-        "daniel-km/viewerjs": "^0.7.2"
+        "sempia/external-assets": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -44,34 +43,15 @@
             "ViewerJsTest\\": "tests/ViewerJsTest/"
         }
     },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "daniel-km/viewerjs",
-                "version": "0.7.2",
-                "type": "omeka-addon-asset",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://github.com/Daniel-KM/ViewerJS/releases/download/0.7.2/viewerjs-0.7.2.zip",
-                    "reference": ""
-                }
-            }
-        }
-    ],
     "config": {
         "allow-plugins": {
-            "composer/installers": true,
-            "oomphinc/composer-installers-extender": true
+            "sempia/external-assets": true
         }
     },
     "extra": {
         "installer-name": "ViewerJs",
-        "installer-types": ["omeka-addon-asset"],
-        "installer-paths": {
-            "asset/vendor/{$name}/": [
-                "type:omeka-addon-asset"
-            ]
+        "external-assets": {
+            "asset/vendor/viewerjs/": "https://gitlab.com/Daniel-KM/ViewerJS/-/releases/0.7.2/downloads/viewerjs-0.7.2.zip"
         }
     }
 }
