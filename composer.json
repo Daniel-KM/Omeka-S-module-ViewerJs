@@ -51,7 +51,7 @@
     "extra": {
         "installer-name": "ViewerJs",
         "external-assets": {
-            "asset/vendor/viewerjs/": "https://gitlab.com/Daniel-KM/ViewerJS/-/releases/0.7.2/downloads/viewerjs-0.7.2.zip"
+            "asset/vendor/viewerjs/": "https://gitlab.com/Sempia/ViewerJS/-/releases/0.8.0/downloads/viewerjs-0.8.0.zip"
         }
     }
 }
