@@ -4,9 +4,18 @@ namespace ViewerJs\View\Helper;
 
 use Laminas\View\Helper\AbstractHelper;
 use Omeka\Api\Representation\AbstractResourceEntityRepresentation;
+use Omeka\Api\Representation\ItemRepresentation;
+use Omeka\Api\Representation\MediaRepresentation;
+use Omeka\Media\FileRenderer\Manager as FileRendererManager;
+use ViewerJs\Media\FileRenderer\ViewerJs as ViewerJsRenderer;
 
 class ViewerJs extends AbstractHelper
 {
+    /**
+     * @var \Omeka\Media\FileRenderer\Manager
+     */
+    protected $fileRendererManager;
+
     /**
      * @var array
      */
@@ -14,6 +23,11 @@ class ViewerJs extends AbstractHelper
         'attributes' => 'class="viewer-js" allowfullscreen="allowfullscreen" style="height: 600px; height: 70vh;"',
         'template' => \ViewerJs\Media\FileRenderer\ViewerJs::PARTIAL_NAME,
     ];
+
+    public function __construct(FileRendererManager $fileRendererManager)
+    {
+        $this->fileRendererManager = $fileRendererManager;
+    }
 
     /**
      * Get the ViewerJs Viewer for the provided resource.
@@ -56,26 +70,34 @@ class ViewerJs extends AbstractHelper
             }
         }
 
-        $resourceName = $resource->resourceName();
-        if ($resourceName === 'item') {
-            $medias = $resource->media();
-            // Get the media that is readable by the viewer.
-            foreach ($medias as $media) {
-                if ($media->renderer() === 'viewerjs') {
-                    $options['source'] = $media->originalUrl();
-                    return $this->render($resource, $options);
-                }
+        // Get the first media that is readable by the viewer.
+        $medias = $resource instanceof ItemRepresentation
+            ? $resource->media()
+            : array_filter([$resource->primaryMedia()]);
+        foreach ($medias as $media) {
+            if ($this->isViewerJsMedia($media)) {
+                $options['source'] = $media->originalUrl();
+                return $this->render($resource, $options);
             }
-            return '';
-        }
-
-        $media = $resource->primaryMedia();
-        if ($media && $media->renderer() !== 'viewerjs') {
-            $options['source'] = $media->originalUrl();
-            return $this->render($resource, $options);
         }
 
         return '';
+    }
+
+    /**
+     * Check if a media is a file rendered by ViewerJS.
+     */
+    protected function isViewerJsMedia(MediaRepresentation $media): bool
+    {
+        if ($media->renderer() !== 'file' || !$media->hasOriginal()) {
+            return false;
+        }
+        foreach ([$media->mediaType(), $media->extension()] as $name) {
+            if ($name && $this->fileRendererManager->has($name)) {
+                return $this->fileRendererManager->get($name) instanceof ViewerJsRenderer;
+            }
+        }
+        return false;
     }
 
     /**

@@ -57,8 +57,8 @@ return [
         ],
     ],
     'view_helpers' => [
-        'invokables' => [
-            'viewerJs' => View\Helper\ViewerJs::class,
+        'factories' => [
+            'viewerJs' => Service\ViewHelper\ViewerJsFactory::class,
         ],
     ],
     'block_layouts' => [
