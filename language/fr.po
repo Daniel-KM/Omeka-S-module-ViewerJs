@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 00:00+0000\n"
-"PO-Revision-Date: 2026-08-31 00:00+0000\n"
+"POT-Creation-Date: 2026-11-02 00:00+0000\n"
+"PO-Revision-Date: 2026-11-02 00:00+0000\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.6\n"
 
-#: data/scripts/upgrade.php:29 Module.php:84
+#: data/scripts/upgrade.php:29 Module.php:83
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
 msgstr "Le module %1$s doit être mis à niveau à la version %2$s ou ultérieure."
@@ -36,13 +36,17 @@ msgstr ""
 "« Titre » ou « Html » a été ajouté à tous les blocs qui contenait une "
 "entête. Vous pouvez vérifier les pages pour les styles : {json}"
 
-#: Module.php:95
+#: data/scripts/upgrade.php:127
 msgid ""
-"The ViewerJS library should be installed. See module’s installation "
-"documentation."
+"These file renderers cannot be loaded, so the media using them cannot be "
+"displayed: {list}. Check the key \"file_renderers\" in the file \"config/"
+"local.config.php\": the renderer \"pdfViewer\" does not exist any more. See "
+"the readme of the module."
 msgstr ""
-"La bibliothèque ViewerJS doit être installée. Consulter la documentation "
-"d’installation du module."
+"Ces moteurs de rendu de fichiers ne peuvent pas être chargés, donc les "
+"médias qui les utilisent ne peuvent pas être affichés : {list}. Vérifiez la "
+"clé « file_renderers » dans le fichier « config/local.config.php » : le "
+"moteur de rendu « pdfViewer » n’existe plus. Voir le readme du module."
 
 #: src/Form/SettingsFieldset.php:10
 #: src/Site/ResourcePageBlockLayout/ViewerJs.php:13
@@ -77,3 +81,10 @@ msgid ""
 msgstr ""
 "L’url à afficher. Note : les médias attachés aux items sont automatiquement "
 "rendus via les blocs par défaut, notamment « Média »."
+
+#~ msgid ""
+#~ "The ViewerJS library should be installed. See module’s installation "
+#~ "documentation."
+#~ msgstr ""
+#~ "La bibliothèque ViewerJS doit être installée. Consulter la documentation "
+#~ "d’installation du module."

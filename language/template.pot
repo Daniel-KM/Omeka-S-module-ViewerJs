@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 00:00+0000\n"
+"POT-Creation-Date: 2026-11-02 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/scripts/upgrade.php:29 Module.php:84
+#: data/scripts/upgrade.php:29 Module.php:83
 #, php-format
 msgid "The module %1$s should be upgraded to version %2$s or later."
 msgstr ""
@@ -33,10 +33,12 @@ msgid ""
 "heading. You may check pages for styles: {json}"
 msgstr ""
 
-#: Module.php:95
+#: data/scripts/upgrade.php:127
 msgid ""
-"The ViewerJS library should be installed. See module’s installation "
-"documentation."
+"These file renderers cannot be loaded, so the media using them cannot be "
+"displayed: {list}. Check the key \"file_renderers\" in the file \"config/"
+"local.config.php\": the renderer \"pdfViewer\" does not exist any more. See "
+"the readme of the module."
 msgstr ""
 
 #: src/Form/SettingsFieldset.php:10
