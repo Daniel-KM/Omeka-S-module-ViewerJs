@@ -53,7 +53,6 @@ if (!defined('COMMON_PSR4_FALLBACK')) {
     }
 }
 
-use Common\Stdlib\PsrMessage;
 use Common\TraitModule;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;
@@ -85,20 +84,6 @@ class Module extends AbstractModule
                 'Common', '3.4.91'
             );
             throw new \Omeka\Module\Exception\ModuleCannotInstallException((string) $message);
-        }
-
-        $errors = [];
-
-        $js = __DIR__ . '/asset/vendor/viewerjs/viewer.js';
-        if (!file_exists($js)) {
-            $message = new PsrMessage(
-                'The ViewerJS library should be installed. See module’s installation documentation.' // @translate
-            );
-            $errors[] = (string) $message->setTranslator($translator);
-        }
-
-        if ($errors) {
-            throw new \Omeka\Module\Exception\ModuleCannotInstallException(implode("\n", $errors));
         }
     }
 
