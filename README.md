@@ -77,16 +77,24 @@ is available directly: the styles of the iframe. Other ones are managed via the
 rendered.
 
 To display the media (images, audio, video) via the ViewerJS, copy and adapt the
-section `['file_renderers']['aliases']` in `config/module.config.php` in your
-`config/local.config.php`.
+commented lines of the section `['file_renderers']['invokables']` in
+`config/module.config.php` in your `config/local.config.php`.
 
 To display the pdf with the more complete viewer provided by the module [Pdf Viewer],
-you need to set its value in your local config too:
+install it and set its renderer class in your local config too:
 
 ```php
-            'application/pdf' => 'pdfViewer',
-            'pdf' => 'pdfViewer',
+    'file_renderers' => [
+        'invokables' => [
+            'application/pdf' => \PdfViewer\Media\FileRenderer\PdfRenderer::class,
+            'pdf' => \PdfViewer\Media\FileRenderer\PdfRenderer::class,
+        ],
+    ],
 ```
+
+***Warning***: the value should be the class of an installed module, else the
+page fails with an error like `Class "pdfViewer" not found`. In particular, the
+name `pdfViewer` of old versions of this readme does not exist any more.
 
 
 ### Advanced display in public theme
