@@ -207,7 +207,7 @@ Module Viewer Js for Omeka S:
 [WebODF]: https://github.com/kogmbh/WebODF
 [Document Foundation]: https://www.documentfoundation.org
 [Pdf Viewer]: https://gitlab.com/Daniel-KM/Omeka-S-module-PdfViewer
-[module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/issues
+[module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-ViewerJs/-/work_items
 [CeCILL v2.1]: https://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
 [FSF]: https://www.fsf.org

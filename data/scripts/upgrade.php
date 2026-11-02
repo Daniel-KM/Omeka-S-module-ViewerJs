@@ -119,3 +119,15 @@ if (version_compare($oldVersion, '3.4.4', '<')) {
         $logger->warn($message->getMessage(), $message->getContext());
     }
 }
+
+if (version_compare($oldVersion, '3.4.7-p0.8.1', '<')) {
+    $invalids = $this->invalidFileRenderers();
+    if ($invalids) {
+        $message = new PsrMessage(
+            'These file renderers cannot be loaded, so the media using them cannot be displayed: {list}. Check the key "file_renderers" in the file "config/local.config.php": the renderer "pdfViewer" does not exist any more. See the readme of the module.', // @translate
+            ['list' => implode(', ', $invalids)]
+        );
+        $messenger->addError($message);
+        $services->get('Omeka\Logger')->err($message->getMessage(), $message->getContext());
+    }
+}

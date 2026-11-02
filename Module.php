@@ -145,4 +145,36 @@ class Module extends AbstractModule
         }
         $settings->set('extension_whitelist', $whitelist);
     }
+
+    /**
+     * List the file renderers set in the config that cannot be loaded.
+     *
+     * A previous version of the readme proposed a renderer that does not exist
+     * any more ("pdfViewer"), that may remain in the local config.
+     *
+     * The renderers of the core are skipped: they are valid and some versions
+     * of the core have a renderer that cannot be compiled (FallbackRenderer of
+     * Omeka S 4.1 and 4.2), so loading it would be a fatal error.
+     */
+    protected function invalidFileRenderers(): array
+    {
+        $services = $this->getServiceLocator();
+        $fileRenderers = $services->get('Config')['file_renderers'] ?? [];
+        $coreFileRenderers = $services->get('ModuleManager')->getModule('Omeka')->getConfig()['file_renderers'] ?? [];
+        $fileRendererManager = $services->get('Omeka\Media\FileRenderer\Manager');
+        $invalids = [];
+        foreach (['invokables', 'aliases'] as $type) {
+            foreach ($fileRenderers[$type] ?? [] as $name => $target) {
+                if (($coreFileRenderers[$type][$name] ?? null) === $target) {
+                    continue;
+                }
+                try {
+                    $fileRendererManager->get($name);
+                } catch (\Throwable $e) {
+                    $invalids[] = $name;
+                }
+            }
+        }
+        return array_values(array_unique($invalids));
+    }
 }
